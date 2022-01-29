@@ -3,8 +3,9 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vw;
   pointer-events: none;
+  margin: 3vw;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,15 +14,33 @@
   }
 }
 
+hr {
+  margin: 0;
+}
+
+table {
+  margin: 50px auto 50px auto;
+  display: inline-block;
+  font-size: 1.5rem;
+  border-collapse: collapse;
+
+}
+
+td {
+  padding: 1vw;
+  border: 1px solid black;
+  width: 25vh;
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: rgb(190, 189, 189);
+  min-height: 15vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 3vw;
+  color: black;
 }
 
 .App-link {
