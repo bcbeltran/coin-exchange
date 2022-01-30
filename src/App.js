@@ -1,5 +1,6 @@
 import "./App.css";
 import Coin from "./components/Coin";
+import AccountBalance from './components/AccountBalance';
 
 function App() {
 	return (
@@ -12,13 +13,15 @@ function App() {
 				/>
 				<h1 className="headingH1">Coin Exhcange</h1>
 			</header>
-      <bold><hr /></bold>
+      		<hr />
+			<AccountBalance amount={10000} />
 			<table>
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Ticker</th>
 						<th>Price</th>
+						<th>Get Current Price</th>
 					</tr>
 				</thead>
 				<tbody>
