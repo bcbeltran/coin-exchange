@@ -24,6 +24,7 @@ export default class Coin extends Component {
 			<CoinRow>
 				<td>{this.props.name}</td>
 				<td>{this.props.ticker}</td>
+				<td>{this.props.showBalance ? this.props.balance : '********'}</td>
 				<td>${this.props.price.toFixed(2)}</td>
 				<td>
 					<form action="#" method="POST">
@@ -39,4 +40,5 @@ Coin.propTypes = {
 	name: PropTypes.string.isRequired,
 	ticker: PropTypes.string.isRequired,
 	price: PropTypes.number.isRequired,
+	balance: PropTypes.number.isRequired
 };
