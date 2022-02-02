@@ -8,7 +8,7 @@ const Header = () => {
 				className="App-logo"
 				alt="logo"
 			/>
-			<h1 className="headingH1">NFT Exhcange</h1>
+			<h1 className="headingH1">Coin Exhcange</h1>
 		</header>
   );
 };
