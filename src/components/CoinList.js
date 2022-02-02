@@ -21,6 +21,7 @@ export default class CoinList extends Component {
 						return (
 							<Coin
 								key={coin.id}
+								tickerId={coin.id}
 								name={coin.name}
 								ticker={coin.ticker}
 								price={coin.price}
