@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -11,29 +11,30 @@ const TdButton = styled.td`
 	text-align: center;
 `;
 
-export default class Coin extends Component {
+const Coin = ({name, ticker, showBalance, balance, price, tickerId, handleRefresh}) => {
 
-	handleClick = (event) => {
+	const handleClick = (event) => {
 		event.preventDefault();
-		this.props.handleRefresh(this.props.tickerId);
-	}
+		handleRefresh(tickerId);
+	};
 
-	render() {
-		return (
-			<tr>
-				<Td>{this.props.name}</Td>
-				<Td>{this.props.ticker}</Td>
-				<Td>{this.props.showBalance ? this.props.balance : '********'}</Td>
-				<Td>${this.props.price.toFixed(4)}</Td>
-				<TdButton>
-					<form action="#" method="POST">
-						<button onClick={this.handleClick}>Refresh</button>
-					</form>
-				</TdButton>
-			</tr>
-		);
-	}
+	
+	return (
+		<tr>
+			<Td>{name}</Td>
+			<Td>{ticker}</Td>
+			<Td>{showBalance ? balance : '********'}</Td>
+			<Td>${price.toFixed(4)}</Td>
+			<TdButton>
+				<form action="#" method="POST">
+					<button onClick={handleClick}>Refresh</button>
+				</form>
+			</TdButton>
+		</tr>
+	);
+	
 }
+
 
 Coin.propTypes = {
 	name: PropTypes.string.isRequired,
@@ -41,3 +42,5 @@ Coin.propTypes = {
 	price: PropTypes.number.isRequired,
 	balance: PropTypes.number.isRequired
 };
+
+export default Coin;

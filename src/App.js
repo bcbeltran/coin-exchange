@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./App.css";
 import Header from "./components/Header";
@@ -8,43 +8,13 @@ import AccountBalance from "./components/AccountBalance";
 
 const coinCount = 20;
 
-class App extends React.Component {
-	state = {
-		showBalance: false,
-		balance: 10000,
-		coinData: [
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Bitcoin",
-			// 	ticker: "BTC",
-			// 	price: 38000,
-			// 	balance: 2,
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "XRP",
-			// 	ticker: "XRP",
-			// 	price: 0.75,
-			// 	balance: 100000,
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "Cardano",
-			// 	ticker: "ADA",
-			// 	price: 1.6,
-			// 	balance: 20000
-			// },
-			// {
-			// 	id: uuidv4(),
-			// 	name: "USDC",
-			// 	ticker: "USDC",
-			// 	price: 1.0,
-			// 	balance: 8000000
-			// },
-		],
-	};
+const App = () => {
 
-	componentDidMount = async () => {
+	const [balance, setBalance] = useState(10000);
+	const [showBalance, setShowBalance] = useState(false);
+	const [coinData, setCoinData] = useState([]);
+
+	const componentDidMount = async () => {
 		
 		let response = await axios.get("https://api.coinpaprika.com/v1/coins");
 
@@ -65,15 +35,22 @@ class App extends React.Component {
 			};
 		});
 
-		this.setState({ coinData: coinPriceData });
+		setCoinData(coinPriceData);
 	};
 
-	handleRefresh = async (newTickerId) => {
+	useEffect(function() {
+		if(coinData.length === 0) {
+			return componentDidMount(); 
+		}
+	});
+
+
+	const handleRefresh = async (newTickerId) => {
 		let tickerUrl = `https://api.coinpaprika.com/v1/tickers/${newTickerId}`;
 
 		let response = await axios.get(tickerUrl);
 		let newPrice = response.data.quotes.USD.price;
-		const newCoinData = this.state.coinData.map(function (values) {
+		const newCoinData = coinData.map(function (values) {
 			let newValues = {...values};
 			if (newTickerId === values.id) {
 				newValues.price = newPrice;
@@ -81,31 +58,29 @@ class App extends React.Component {
 			return newValues;
 		});
 
-		this.setState({ coinData: newCoinData });
+		setCoinData(newCoinData);
 	};
 
-	handleHide = () => {
-		this.setState({ showBalance: !this.state.showBalance });
+	const handleHide = () => {
+		setShowBalance(prev => !prev);
 	};
 
-	render() {
-		return (
-			<div className="App">
-				<Header />
-				<hr />
-				<AccountBalance
-					amount={this.state.balance}
-					showBalance={this.state.showBalance}
-					handleHide={this.handleHide}
-				/>
-				<CoinList
-					handleRefresh={this.handleRefresh}
-					coinData={this.state.coinData}
-					showBalance={this.state.showBalance}
-				/>
-			</div>
-		);
-	}
+	return (
+		<div className="App">
+			<Header />
+			<hr />
+			<AccountBalance
+				amount={balance}
+				showBalance={showBalance}
+				handleHide={handleHide}
+			/>
+			<CoinList
+				handleRefresh={handleRefresh}
+				coinData={coinData}
+				showBalance={showBalance}
+			/>
+		</div>
+	);
 }
 
 export default App;

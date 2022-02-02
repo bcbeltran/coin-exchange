@@ -23,19 +23,19 @@ const Button = styled.button`
 
 const AccountBalance = ({handleHide, amount, showBalance}) => {
     const buttonText = showBalance ? "Hide balance" : "Show balance";
-  return (
-      <>
-      <Div>
-          <p>Your current balance is: {showBalance ? `$${amount}` : "$********"}</p>
-        <Button onClick={handleHide}>{buttonText}</Button>
-      </Div>
+    return (
+        <>
+        <Div>
+            <p>Your current balance is: {showBalance ? `$${amount}` : "$********"}</p>
+            <Button onClick={handleHide}>{buttonText}</Button>
+        </Div>
 
-      </>
-  );
+        </>
+    );
 };
-
-export default AccountBalance;
 
 AccountBalance.propTypes = {
     amount: PropTypes.number.isRequired,
 };
+
+export default AccountBalance;
