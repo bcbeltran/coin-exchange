@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -16,25 +16,6 @@
   }
 } */
 
-hr {
-  margin: 0;
-}
-
-table {
-  margin: 2vw 2vw;
-  display: inline-block;
-  font-size: 1.5rem;
-  border-collapse: collapse;
-  text-align: left;
-
-}
-
-td {
-  padding: 1vw;
-  border: 1px solid black;
-  width: 25vh;
-}
-
 .App-header {
   background-color: rgb(190, 189, 189);
   min-height: 15vh;
@@ -42,9 +23,17 @@ td {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: 3vw;
   color: black;
 }
+
+.headingH1 {
+  font-size: 10vw;
+}
+
+td {
+  width: 20vw;
+}
+
 
 /* @keyframes App-logo-spin {
   from {
